@@ -1,0 +1,125 @@
+App.js
+
+import React, { useState } from 'react';
+import './App.css';
+
+import PostForm from './components/PostForm';
+import PostList from './components/PostList';
+
+function App() {
+  const [posts, setPosts] = useState([]);
+
+  const addPost = (newPost) => {
+    setPosts([...posts, newPost]);
+  };
+
+  return (
+    <div className="App">
+      <header>
+        <h1>Social Media App</h1>
+      </header>
+      
+      <main>
+        <PostForm onAddPost={addPost} />
+        <PostList posts={posts} />
+      </main>
+    </div>
+  );
+}
+
+export default App;
+PostForm.js
+
+import React, { useState } from 'react';
+
+const PostForm = ({ onAddPost }) => {
+  const [newPost, setNewPost] = useState({ title: '', content: '' });
+
+  const handleInputChange = (e) => {
+    setNewPost({ ...newPost, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAddPost(newPost);
+    setNewPost({ title: '', content: '' });
+  };
+
+  return (
+    <form className="post-form" onSubmit={handleSubmit}>
+      <label>Title:</label>
+      <input type="text" name="title" value={newPost.title} onChange={handleInputChange} required />
+
+      <label>Content:</label>
+      <textarea name="content" value={newPost.content} onChange={handleInputChange} required />
+
+      <button type="submit">Add Post</button>
+    </form>
+  );
+};
+
+export default PostForm;
+PostList.js
+
+import React from 'react';
+
+const PostList = ({ posts }) => {
+  return (
+    <div className="post-list">
+      <h2>Posts</h2>
+      {posts.map((post, index) => (
+        <div className="post" key={index}>
+          <h3>{post.title}</h3>
+          <p>{post.content}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default PostList;
+CSS (App.css)
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #3498db;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.post-form {
+  margin-bottom: 1rem;
+}
+
+.post {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.post h3 {
+  color: #3498db;
+}
+
+button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+This example demonstrates a simple interactive social media feed using React. Users can add new posts through a form, and the posts are dynamically updated and displayed in a post list. The styling is done using CSS to create a clean and visually appealing layout. In a real-world application, you would integrate with a back-end for data storage, implement user authentication, and add more features for a complete social media experience.
