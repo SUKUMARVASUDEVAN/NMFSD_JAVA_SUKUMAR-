@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Social Media Front Design</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #3b5998;
+    padding: 1rem;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 2rem;
+}
+
+.instagram {
+    background-color: #f0f2f5;
+    border-radius: 5px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.instagram-link {
+    color: #3b5998;
+    text-decoration: none;
+}
+
+.instagram-link:hover {
+    text-decoration: underline;
+}</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="instagram">
+            <h2>Follow us on Instagram</h2>
+            <a href="#" class="instagram-link">@Instagram</a>
+        </section>
+    </main>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const instagramLink = document.querySelector('.instagram-link');
+    instagramLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.open('https://www.instagram.com/instagram/', '_blank');
+    });
+});</script>
+</body>
+</html>
